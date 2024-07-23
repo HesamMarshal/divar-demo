@@ -1,10 +1,15 @@
 const express = require("express");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 async function main() {
   const app = express();
 
-  app.listen(3000, () => {
-    console.log("server: http://localhost:3000");
+  // Run Server
+  const PORT = process.env.PORT;
+  app.listen(PORT, () => {
+    console.log(`server: http://localhost:${PORT}`);
   });
 }
 main();
