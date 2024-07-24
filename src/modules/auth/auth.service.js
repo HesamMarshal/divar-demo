@@ -35,6 +35,12 @@ class AuthService {
   }
 
   async checkOTP(mobile, code) {}
+
+  async checkExistByMobile(mobile) {
+    const user = await this.#model.findOne({ mobile });
+    if (!user) throw new createHttpError.NotFound(AuthMessage.NotFound);
+    return user;
+  }
 }
 
 // Singleton use
