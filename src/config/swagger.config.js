@@ -4,6 +4,7 @@ const swaggerUi = require("swagger-ui-express");
 function SwaggerConfig(app) {
   const swaggerDocument = swaggerJSDoc({
     swaggerDefinition: {
+      openapi: "3.0.1",
       info: {
         title: "divar-backend-demo",
         description: "botostart project course",
