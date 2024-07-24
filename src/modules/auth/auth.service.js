@@ -17,7 +17,9 @@ class AuthService {
     const now = new Date().getTime();
     const otp = {
       code: randomInt(10000, 99999),
-      expiresIn: now + 1000 * 60 * 2,
+
+      //  2 mins: 2 * 60 * 1000 = 120000 ms
+      expiresIn: now + 120000,
     };
 
     // Check if user not exist create new user,
