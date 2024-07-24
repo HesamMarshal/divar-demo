@@ -1,7 +1,7 @@
 const AuthMessage = {
-  SendOtpSuccessfully: "Send OTP succefully",
+  SendOtpSuccessfully: "OTP sent succefully",
   NotFound: "User Not Found",
-  OtpCodeNotExpired: "OTP code not expired please try later",
+  OtpCodeNotExpired: "OTP code not expired yet. please wait for a few seconds.",
 };
 
 module.exports = AuthMessage;

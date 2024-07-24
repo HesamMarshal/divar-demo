@@ -10,6 +10,7 @@ class AuthService {
     autoBind(this);
     this.#model = UserModel;
   }
+
   async sendOTP(mobile) {
     const user = await this.#model.findOne({ mobile });
 
@@ -23,7 +24,7 @@ class AuthService {
     };
 
     // Check if user not exist create new user,
-    // if user exsit check for otp and expires
+    // if user exsit check for OTP and expires
     if (!user) {
       const newUser = await this.#model.create({ mobile, otp });
       return newUser;
@@ -31,6 +32,7 @@ class AuthService {
     if (user.otp && user.otp.expiresIn > now)
       throw new createHttpError.BadRequest(AuthMessage.OtpCodeNotExpired);
 
+    // Save the OTP change in DB
     user.otp = otp;
     await user.save();
     return user;
@@ -38,6 +40,7 @@ class AuthService {
 
   async checkOTP(mobile, code) {}
 
+  // Checks if user already exist using mobile
   async checkExistByMobile(mobile) {
     const user = await this.#model.findOne({ mobile });
     if (!user) throw new createHttpError.NotFound(AuthMessage.NotFound);
