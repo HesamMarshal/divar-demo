@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const SwaggerConfig = require("./src/config/swagger.config");
+const mainRouter = require("./src/app.route");
 
 dotenv.config();
 
@@ -12,6 +13,9 @@ async function main() {
 
   //   Use Swagger
   SwaggerConfig(app);
+
+  // Router
+  app.use(mainRouter);
 
   //   Run Server
   const PORT = process.env.PORT;
