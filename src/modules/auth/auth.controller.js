@@ -8,6 +8,7 @@ class AuthController {
     autoBind(this);
     this.#service = authService;
   }
+
   async sendOTP(req, res, next) {
     try {
       const { mobile } = req.body;
@@ -19,14 +20,16 @@ class AuthController {
       next(error);
     }
   }
+
   async checkOTP(req, res, next) {
     try {
       const { mobile, code } = req.body;
 
       // checks if user entered a correct mobile and OTP
-      const result = await this.#service.checkOTP(mobile, code);
+      const token = await this.#service.checkOTP(mobile, code);
       return res.json({
         message: AuthMessage.LoggedInSuccessfully,
+        token,
       });
     } catch (error) {
       next(error);
