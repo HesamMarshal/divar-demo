@@ -11,6 +11,10 @@ async function main() {
   //   Connect to DB
   require("./src/config/mongoose.config");
 
+  // Config to Get Datafrom frontend
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+
   //   Use Swagger
   SwaggerConfig(app);
 
