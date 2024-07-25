@@ -30,6 +30,8 @@ class AuthService {
       const newUser = await this.#model.create({ mobile, otp });
       return newUser;
     }
+
+    //  if user ask for new OTP code before the current one expires
     if (user.otp && user.otp.expiresIn > now)
       throw new createHttpError.BadRequest(AuthMessage.OtpCodeNotExpired);
 
@@ -39,10 +41,32 @@ class AuthService {
     return user;
   }
 
-  async checkOTP(mobile, code) {}
+  async checkOTP(mobile, code) {
+    // check if user exsits or not
+    const user = await this.checkExistByMobile(mobile);
+
+    const now = new Date().getTime();
+
+    // checks if OTP expired
+    if (user?.otp?.expiresIn < now)
+      throw new createHttpError.Unauthorized(AuthMessage.OtpCodeExpired);
+
+    // Checks if user entered a correct OPT code
+    if (user?.otp?.code !== code)
+      throw new createHttpError.Unauthorized(AuthMessage.OtpCodeIsIncorrect);
+
+    // if user mobile not verified yet, verify it.
+    if (!user.verifiedMobile) {
+      user.verifiedMobile = true;
+      user.save();
+    }
+
+    return user;
+  }
 
   // Checks if user already exist using mobile
   async checkExistByMobile(mobile) {
+    // if user exist returns it, else throw an error
     const user = await this.#model.findOne({ mobile });
     if (!user) throw new createHttpError.NotFound(AuthMessage.NotFound);
     return user;
