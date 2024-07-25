@@ -16,7 +16,7 @@ function SwaggerConfig(app) {
   });
 
   const swagger = swaggerUi.setup(swaggerDocument, {});
-  app.use("/", swaggerUi.serve, swagger);
+  app.use("/docs", swaggerUi.serve, swagger);
 }
 
 module.exports = SwaggerConfig;
