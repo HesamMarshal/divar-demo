@@ -2,6 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const SwaggerConfig = require("./src/config/swagger.config");
 const mainRouter = require("./src/app.route");
+const NotFoundHandler = require("./src/common/exception/not-found.handler");
+const AllExceptionHandler = require("./src/common/exception/all-exception.handler");
 
 dotenv.config();
 
@@ -20,6 +22,10 @@ async function main() {
 
   // Router
   app.use(mainRouter);
+
+  // Error Handlers
+  NotFoundHandler(app);
+  AllExceptionHandler(app);
 
   //   Run Server
   const PORT = process.env.PORT;
