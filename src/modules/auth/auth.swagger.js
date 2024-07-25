@@ -6,7 +6,7 @@
  */
 
 /**
- * @swager
+ * @swagger
  *  components:
  *      schemas:
  *          SendOTP:
@@ -29,6 +29,9 @@
  *      requestBody:
  *          content:
  *              application/x-www-form-urlencoded:
+ *                  schema:
+ *                      $ref: "#/components/schemas/SendOTP"
+ *              application/json:
  *                  schema:
  *                      $ref: "#/components/schemas/SendOTP"
  *      responses:
