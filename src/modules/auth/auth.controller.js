@@ -21,6 +21,13 @@ class AuthController {
   }
   async checkOTP(req, res, next) {
     try {
+      const { mobile, code } = req.body;
+
+      // checks if user entered a correct mobile and OTP
+      const result = await this.#service.checkOTP(mobile, code);
+      return res.json({
+        message: AuthMessage.LoggedInSuccessfully,
+      });
     } catch (error) {
       next(error);
     }
