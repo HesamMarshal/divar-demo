@@ -3,7 +3,7 @@ const UserModel = require("../user/user.model");
 const { randomInt } = require("crypto");
 const autoBind = require("auto-bind");
 const jwt = require("jsonwebtoken");
-const AuthMessage = require("../../common/messages/auth.messages");
+const { AuthMessage } = require("../../common/messages/messages");
 
 class AuthService {
   #model;

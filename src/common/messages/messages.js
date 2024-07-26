@@ -12,4 +12,6 @@ const AuthMessage = Object.freeze({
   InvalidToken: "Token is invalid",
 });
 
-module.exports = AuthMessage;
+const UserMessage = Object.freeze({});
+
+module.exports = { AuthMessage, UserMessage };
