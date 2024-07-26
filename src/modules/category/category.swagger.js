@@ -49,12 +49,7 @@
  *      summary: Get All categories
  *      tags:
  *          -   Category
- *      requestBody:
- *          content:
- *              application/x-form-urlencoded:
- *                  schema:
- *                      $ref: '#/components/schemas/CreateCategory'
- *              application/json:
- *                  schema:
- *                      $ref: '#/components/schemas/CreateCategory'
+ *      response:
+ *          200:
+ *              description: success
  */
