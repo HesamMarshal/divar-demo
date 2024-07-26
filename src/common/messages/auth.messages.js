@@ -1,4 +1,10 @@
-const AuthorizationMessage = Object.freeze({
+const AuthMessage = Object.freeze({
+  SendOtpSuccessfully: "OTP sent succefully",
+  NotFound: "User Not Found",
+  OtpCodeNotExpired: "OTP code not expired yet. please wait for a few seconds.",
+  OtpCodeExpired: "OTP code expired. please ask for new OTP.",
+  OtpCodeIsIncorrect: "OTP code is incorrect.",
+  LoggedInSuccessfully: "You logged in successfully.",
   Login: "Please Login",
   LoginAgain: "Please Login Again",
   Unauthorized: "Unauthorized! Please Login",
@@ -6,4 +12,4 @@ const AuthorizationMessage = Object.freeze({
   InvalidToken: "Token is invalid",
 });
 
-module.exports = AuthorizationMessage;
+module.exports = AuthMessage;

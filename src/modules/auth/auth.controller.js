@@ -1,7 +1,8 @@
 const autoBind = require("auto-bind");
 const authService = require("./auth.service");
-const AuthMessage = require("./auth.messages");
+
 const NodeEnv = require("../../common/constant/env.enum");
+const AuthMessage = require("../../common/messages/auth.messages");
 
 class AuthController {
   #service;

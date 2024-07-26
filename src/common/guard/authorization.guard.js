@@ -1,7 +1,7 @@
 const createHttpError = require("http-errors");
-const AuthorizationMessage = require("../messages/auth.messages");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../../modules/user/user.model");
+const AuthMessage = require("../messages/auth.messages");
 
 require("dotenv").config();
 const Authorization = async (req, res, next) => {
@@ -10,7 +10,7 @@ const Authorization = async (req, res, next) => {
     const token = req?.cookie?.access_token;
 
     // verify if token is available and valid
-    if (!token) throw createHttpError.Unauthorized(AuthorizationMessage.Login);
+    if (!token) throw createHttpError.Unauthorized(AuthMessage.Login);
     const data = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
     // retrive user using id in token
@@ -20,12 +20,11 @@ const Authorization = async (req, res, next) => {
         otp: 0,
       }).lean(); //get only simple information not all method
 
-      if (!user)
-        throw createHttpError.Unauthorized(AuthorizationMessage.NotFound);
+      if (!user) throw createHttpError.Unauthorized(AuthMessage.NotFound);
       req.user = user;
       return next();
     }
-    throw new createHttpError.Unauthorized(AuthorizationMessage.InvalidToken);
+    throw new createHttpError.Unauthorized(AuthMessage.InvalidToken);
   } catch (error) {
     next(error);
   }
