@@ -10,6 +10,7 @@ const AuthMessage = Object.freeze({
   Unauthorized: "Unauthorized! Please Login",
   NotFound: "User Not Found",
   InvalidToken: "Token is invalid",
+  LogoutSuccessfully: "Logged out successfully!",
 });
 
 const UserMessage = Object.freeze({});
