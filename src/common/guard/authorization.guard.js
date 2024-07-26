@@ -14,7 +14,7 @@ const Authorization = async (req, res, next) => {
     const data = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
     // retrive user using id in token
-    if (typeof data === "object" && "id" in data.id) {
+    if (typeof data === "object" && "id" in data) {
       const user = await UserModel.findById(data.id, {
         accessToken: 0,
         otp: 0,
