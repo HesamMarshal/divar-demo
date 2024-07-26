@@ -2,8 +2,8 @@ const createHttpError = require("http-errors");
 const jwt = require("jsonwebtoken");
 const UserModel = require("../../modules/user/user.model");
 const { AuthMessage } = require("../messages/messages");
-
 require("dotenv").config();
+
 const Authorization = async (req, res, next) => {
   try {
     // retrive token from cookie
@@ -18,6 +18,9 @@ const Authorization = async (req, res, next) => {
       const user = await UserModel.findById(data.id, {
         accessToken: 0,
         otp: 0,
+        __v: 0,
+        updatedAt: 0,
+        verifiedMobile: 0,
       }).lean(); //get only simple information not all method
 
       if (!user) throw createHttpError.Unauthorized(AuthMessage.NotFound);
