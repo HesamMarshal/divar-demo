@@ -8,5 +8,6 @@ class CategoryService {
     this.#model = CategoryModel;
   }
   async create(categoryDto) {}
+  async find() {}
 }
 module.exports = new CategoryService();
