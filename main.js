@@ -11,7 +11,7 @@ dotenv.config();
 async function main() {
   const app = express();
 
-  //   Connect to DB
+  // Connect to DB
   require("./src/config/mongoose.config");
 
   // Config to Get Datafrom frontend
@@ -21,7 +21,7 @@ async function main() {
   // Add access to cookies
   app.use(cookieParser(process.env.COOKIE_SECRET_KEY));
 
-  //   Use Swagger
+  // Use Swagger
   SwaggerConfig(app);
 
   // Router
@@ -41,4 +41,10 @@ main();
 
 // 1. Create and configure server
 // 2. Configure and conncet to db
-// 3. Configure and use Swagger
+// 3. Error handler
+// 4. Configure and use Swagger
+// 5. Implement Swagger schema
+// 6. UserModel
+// 7. Implement Auth Module
+// 8. Implement User Module
+// 9. Implement Category Module
