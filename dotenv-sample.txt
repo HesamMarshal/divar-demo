@@ -2,3 +2,4 @@
 PORT=3000;
 MONGODB_URL="mongodb://127.0.0.1:27017/divar-demo";
 JWT_SECRET_KEY="Your Secret Key Here"
+COOKIE_SECRET_KEY="Your Secret Key Here"
