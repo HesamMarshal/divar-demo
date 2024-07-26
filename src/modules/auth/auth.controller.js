@@ -32,7 +32,7 @@ class AuthController {
       const token = await this.#service.checkOTP(mobile, code);
 
       return res
-        .cookie("access_token", token, {
+        .cookie(CookieNames.AccessToken, token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === NodeEnv.Production,
         })
