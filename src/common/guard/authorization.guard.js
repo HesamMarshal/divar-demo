@@ -7,7 +7,7 @@ require("dotenv").config();
 const Authorization = async (req, res, next) => {
   try {
     // retrive token from cookie
-    const token = req?.cookie?.access_token;
+    const token = req?.cookies?.access_token;
 
     // verify if token is available and valid
     if (!token) throw createHttpError.Unauthorized(AuthMessage.Login);
@@ -29,3 +29,5 @@ const Authorization = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports = Authorization;
