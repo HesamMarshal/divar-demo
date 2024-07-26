@@ -3,6 +3,7 @@ const authService = require("./auth.service");
 
 const NodeEnv = require("../../common/constant/env.enum");
 const { AuthMessage } = require("../../common/messages/messages");
+const CookieNames = require("../../common/constant/cookie.enum");
 
 class AuthController {
   #service;
@@ -47,6 +48,9 @@ class AuthController {
 
   async logout(req, res, next) {
     try {
+      return res.clearCookie(CookieNames.AccessToken).status(200).json({
+        message: AuthMessage.LogoutSuccessfully,
+      });
     } catch (error) {
       next(error);
     }
