@@ -1,6 +1,7 @@
 const autoBind = require("auto-bind");
 const categoryService = require("./category.service");
 const { CategoryMessage } = require("../../common/messages/messages");
+const HttpCodes = require("http-codes");
 
 class CategoryController {
   #service;
@@ -11,8 +12,9 @@ class CategoryController {
   async create(req, res, next) {
     try {
       const { name, icon, slug, parent } = req.body;
+
       // add to database status 201
-      return res.status(201).json({
+      return res.status(HttpCodes.CREATED).json({
         messages: CategoryMessage.CreatedSuccessfully,
       });
     } catch (error) {
