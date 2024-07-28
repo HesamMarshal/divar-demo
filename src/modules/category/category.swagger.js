@@ -11,9 +11,9 @@
  *      schemas:
  *          CreateCategory:
  *              type: object
- *              requiered:
- *                  - name
- *                  - icon
+ *              required:
+ *                  -   name
+ *                  -   icon
  *              properties:
  *                  name:
  *                      type: string
@@ -34,7 +34,7 @@
  *          -   Category
  *      requestBody:
  *          content:
- *              application/x-form-urlencoded:
+ *              application/x-www-form-urlencoded:
  *                  schema:
  *                      $ref: '#/components/schemas/CreateCategory'
  *              application/json:
