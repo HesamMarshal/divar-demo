@@ -36,12 +36,11 @@
  *                      type: array
  *                      items:
  *                          type: string
- *
  */
 
 /**
  * @swagger
- * /option:
+ * /option/:
  *  post:
  *      summary: Create new option for category
  *      tags:
@@ -74,6 +73,7 @@
  *          200:
  *              description: success
  */
+
 /**
  * @swagger
  * /option/{id}/:
@@ -89,9 +89,10 @@
  *          200:
  *              description: success
  */
+
 /**
  * @swagger
- * /option/
+ * /option/:
  *  get:
  *      summary: Get all options
  *      tags:
