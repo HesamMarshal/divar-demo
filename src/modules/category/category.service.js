@@ -4,7 +4,6 @@ const { isValidObjectId, Types } = require("mongoose");
 const createHttpError = require("http-errors");
 const { CategoryMessage } = require("../../common/messages/messages");
 const { default: slugify } = require("slugify");
-const e = require("express");
 
 class CategoryService {
   #model;
@@ -13,8 +12,6 @@ class CategoryService {
     this.#model = CategoryModel;
   }
   async create(categoryDto) {
-    // console.log("Start:", categoryDto);
-
     if (categoryDto?.parent && isValidObjectId(categoryDto.parent)) {
       const existCategory = await this.checkExistById(categoryDto.parent);
       categoryDto.parent = existCategory._id;
@@ -32,15 +29,12 @@ class CategoryService {
     } else {
       categoryDto.slug = slugify(categoryDto.name);
     }
-
-    // console.log("End:", categoryDto);
     try {
       const category = await this.#model.create(categoryDto);
     } catch (error) {
       console.log("create:", error);
     }
 
-    // console.log("End22:", categoryDto);
     return categoryDto;
   }
   async find() {
