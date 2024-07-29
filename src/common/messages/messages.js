@@ -15,7 +15,9 @@ const AuthMessage = Object.freeze({
 
 const UserMessage = Object.freeze({});
 const CategoryMessage = Object.freeze({
-  CreatedSuccessfully: "category created succesfully",
+  CreatedSuccessfully: "Category Created Succesfully",
+  NotFound: "Category Not Found",
+  AlreadyExist: "Category Already Exists.",
 });
 
 module.exports = { AuthMessage, UserMessage, CategoryMessage };
