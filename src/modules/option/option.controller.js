@@ -22,5 +22,17 @@ class OptionController {
       next(error);
     }
   }
+  async findById(req, res, next) {
+    try {
+    } catch (error) {
+      next(error);
+    }
+  }
+  async findByCategoryId(req, res, next) {
+    try {
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 module.exports = new OptionController();
