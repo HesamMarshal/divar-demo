@@ -19,6 +19,10 @@ const CategoryMessage = Object.freeze({
   NotFound: "Category Not Found",
   AlreadyExist: "Category Already Exists.",
 });
-const OptionMessage = Object.freeze({});
+const OptionMessage = Object.freeze({
+  CreatedSuccessfully: "Option Created Succesfully",
+  NotFound: "Option Not Found",
+  AlreadyExist: "Option Already Exists.",
+});
 
 module.exports = { AuthMessage, UserMessage, CategoryMessage, OptionMessage };
