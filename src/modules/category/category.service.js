@@ -22,7 +22,7 @@ class CategoryService {
         ...new Set(
           [existCategory._id.toString()]
             .concat(existCategory.parents.map((id) => id.toString()))
-            .map((id) => Types.ObjectId(id))
+            .map((id) => new Types.ObjectId(id))
         ),
       ];
     }
@@ -43,7 +43,9 @@ class CategoryService {
     // console.log("End22:", categoryDto);
     return categoryDto;
   }
-  async find() {}
+  async find() {
+    return await this.#model.find({});
+  }
 
   async checkExistById(id) {
     const category = await this.#model.findById(id);
