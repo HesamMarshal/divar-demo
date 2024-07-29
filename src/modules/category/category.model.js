@@ -22,6 +22,14 @@ CategorySchema.virtual("children", {
   foreignField: "parent",
 });
 
+function autoPopulate(next) {
+  this.populate([{ path: "children" }]);
+  next();
+}
+
+// run autopopulate befor running find and findOne
+CategorySchema.pre("find", autoPopulate).pre("findOne", autoPopulate);
+
 const CategoryModel = model("category", CategorySchema);
 
 module.exports = CategoryModel;
