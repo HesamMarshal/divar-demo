@@ -1,4 +1,4 @@
-const { Schema, Types } = require("mongoose");
+const { Schema, Types, model } = require("mongoose");
 
 const CategorySchema = new Schema(
   {
@@ -19,7 +19,7 @@ const CategorySchema = new Schema(
 CategorySchema.virtual("children", {
   ref: "Category",
   localField: "_id",
-  foreignField: parent,
+  foreignField: "parent",
 });
 
 const CategoryModel = model("category", CategorySchema);
