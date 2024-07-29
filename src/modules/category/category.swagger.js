@@ -49,7 +49,7 @@
  *      summary: Get All categories
  *      tags:
  *          -   Category
- *      response:
+ *      responses:
  *          200:
  *              description: success
  */
