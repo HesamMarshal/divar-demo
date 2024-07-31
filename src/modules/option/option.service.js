@@ -2,7 +2,10 @@ const autoBind = require("auto-bind");
 const OptionModel = require("./option.model");
 const { isValidObjectId, Types } = require("mongoose");
 const createHttpError = require("http-errors");
-const { OptionMessage } = require("../../common/messages/messages");
+const {
+  OptionMessage,
+  CategoryMessage,
+} = require("../../common/messages/messages");
 const { default: slugify } = require("slugify");
 const CategoryModel = require("../category/category.model");
 
@@ -41,8 +44,8 @@ class OptionService {
 
   // TODO: function name is not clear
   async checkExistById(id) {
-    const category = await this.#model.findById(id);
-    if (!category) throw new createHttpError.NotFound(OptionMessage.NotFound);
+    const category = await this.#categoryModel.findById(id);
+    if (!category) throw new createHttpError.NotFound(CategoryMessage.NotFound);
     return category;
   }
 
