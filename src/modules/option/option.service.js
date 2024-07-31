@@ -34,9 +34,7 @@ class OptionService {
     } else if (typeof optionDto.enum !== "array") {
       optionDto.enum = [];
     }
-    const option = await this.#model.create({
-      optionDto,
-    });
+    const option = await this.#model.create(optionDto);
 
     return option;
   }
