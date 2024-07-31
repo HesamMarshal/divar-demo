@@ -30,6 +30,8 @@ class OptionController {
 
   async find(req, res, next) {
     try {
+      const options = await this.#service.find();
+      return res.json(options);
     } catch (error) {
       next(error);
     }
