@@ -5,10 +5,10 @@ const CategorySchema = new Schema(
     name: { type: String, required: true },
     slug: { type: String, required: true, index: true },
     icon: { type: String, required: true },
-    parent: { type: Types.ObjectId, ref: "category", required: false },
+    parent: { type: Types.ObjectId, ref: "Category", required: false },
     parents: {
       type: [Types.ObjectId],
-      ref: "category",
+      ref: "Category",
       required: false,
       default: [],
     },
@@ -17,7 +17,7 @@ const CategorySchema = new Schema(
 );
 
 CategorySchema.virtual("children", {
-  ref: "category",
+  ref: "Category",
   localField: "_id",
   foreignField: "parent",
 });
@@ -30,6 +30,6 @@ function autoPopulate(next) {
 // run autopopulate befor running find and findOne
 CategorySchema.pre("find", autoPopulate).pre("findOne", autoPopulate);
 
-const CategoryModel = model("category", CategorySchema);
+const CategoryModel = model("Category", CategorySchema);
 
 module.exports = CategoryModel;

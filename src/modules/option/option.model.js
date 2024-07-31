@@ -10,7 +10,7 @@ const OptionSchema = new Schema({
   },
   enum: { type: Array, default: [] },
   guide: { type: String, required: false },
-  category: { type: Types.ObjectId, ref: "category", required: true },
+  category: { type: Types.ObjectId, ref: "Category", required: true },
 });
 
 const OptionModel = model("option", OptionSchema);
