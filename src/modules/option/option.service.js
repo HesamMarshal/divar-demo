@@ -18,7 +18,7 @@ class OptionService {
     this.#categoryModel = CategoryModel;
   }
   async create(optionDto) {
-    const category = this.checkExistById(optionDto.category);
+    const category = await this.checkExistById(optionDto.category);
     optionDto.key = slugify(optionDto.key, {
       trim: true,
       replacement: "_",
