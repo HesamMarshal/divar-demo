@@ -76,6 +76,22 @@
 
 /**
  * @swagger
+ * /option/by-category-slug/{slug}/:
+ *  get:
+ *      summary: Get all options by category slug
+ *      tags:
+ *          -   Option
+ *      parameters:
+ *          -   in: path
+ *              name: slug
+ *              type: string
+ *      responses:
+ *          200:
+ *              description: success
+ */
+
+/**
+ * @swagger
  * /option/{id}/:
  *  get:
  *      summary: Get option by Id
