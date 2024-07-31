@@ -5,7 +5,7 @@ const OptionSchema = new Schema({
   key: { type: String, required: true },
   type: {
     type: String,
-    enum: ["number", "string", "aaray", "boolean"],
+    enum: ["number", "string", "array", "boolean"],
     required: true,
   },
   enum: { type: Array, default: [] },
