@@ -28,7 +28,7 @@ class OptionService {
     await this.alreadyExistByCategoryKey(optionDto.key, category._id);
 
     // checks if enum is string create a array based on it.
-    if (optionDto?.enum && optionDto.enum === "string") {
+    if (optionDto?.enum && typeof optionDto.enum === "string") {
       optionDto.enum = optionDto.enum.split(",");
       //  if enum is not an array create an empty array
     } else if (typeof optionDto.enum !== "array") {
