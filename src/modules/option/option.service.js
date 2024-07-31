@@ -55,6 +55,48 @@ class OptionService {
       .populate([{ path: "category", select: { name: 1, slug: 1 } }]);
   }
 
+  async findByCategorySlug(slug) {
+    const options = await this.#model.aggregate([
+      {
+        $lookup: {
+          from: "categories",
+          localField: "category",
+          foreignField: "_id",
+          as: "category",
+        },
+      },
+      {
+        $unwind: "$category",
+      },
+
+      {
+        $addFields: {
+          categorySlug: "$category.slug",
+          categoryName: "$category.name",
+          categoryIcon: "$category.icon",
+        },
+      },
+      {
+        $project: {
+          category: 0,
+
+          // it is possible to use below
+          // "category._id": 0,
+          // "category.parent": 0,
+          // "category.parents": 0,
+          // "category.slug": 0,
+          __v: 0,
+        },
+      },
+      {
+        $match: {
+          categorySlug: slug,
+        },
+      },
+    ]);
+
+    return options;
+  }
   // TODO: function name is not clear
   async checkExistById(id) {
     const category = await this.#categoryModel.findById(id);
