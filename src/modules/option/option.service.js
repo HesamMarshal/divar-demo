@@ -46,7 +46,10 @@ class OptionService {
   }
 
   async findById(id) {
-    return await this.checkExistById(id);
+    const options = await this.#model
+      .find({ _id: id }, { __v: 0 }, { sort: { _id: -1 } })
+      .populate([{ path: "category", select: { name: 1, slug: 1 } }]);
+    return options;
   }
 
   async findByCategoryId(category) {
