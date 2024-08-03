@@ -17,6 +17,7 @@ class OptionService {
     this.#model = OptionModel;
     this.#categoryModel = CategoryModel;
   }
+
   async create(optionDto) {
     const category = await this.checkExistById(optionDto.category);
     optionDto.key = slugify(optionDto.key, {
@@ -46,10 +47,7 @@ class OptionService {
   }
 
   async findById(id) {
-    const options = await this.#model
-      .find({ _id: id }, { __v: 0 }, { sort: { _id: -1 } })
-      .populate([{ path: "category", select: { name: 1, slug: 1 } }]);
-    return options;
+    return await this.checkOptionExistById(id);
   }
 
   async findByCategoryId(category) {
