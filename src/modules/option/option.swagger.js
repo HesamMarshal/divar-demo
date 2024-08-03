@@ -117,3 +117,19 @@
  *          200:
  *              description: success
  */
+
+/**
+ * @swagger
+ * /option/{id}/:
+ *  delete:
+ *      summary: delete an option by Id
+ *      tags:
+ *          -   Option
+ *      parameters:
+ *          -   in: path
+ *              name: id
+ *              type: string
+ *      responses:
+ *          200:
+ *              description: deleted successfully
+ */

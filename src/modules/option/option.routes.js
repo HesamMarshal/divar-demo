@@ -8,6 +8,8 @@ router.get("/by-category-slug/:slug", optionController.findBySlug);
 router.get("/:id", optionController.findById);
 router.get("/", optionController.find);
 
+router.delete("/:id", optionController.removeById);
+
 module.exports = {
   OptionRouter: router,
 };

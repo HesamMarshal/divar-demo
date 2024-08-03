@@ -100,10 +100,23 @@ class OptionService {
 
     return options;
   }
+
+  async removeById(id) {
+    await this.checkOptionExistById(id);
+    return await this.#model.deleteOne({ _id: id });
+  }
+
+  // helper functions
   // TODO: function name is not clear
+
+  async checkOptionExistById(id) {
+    const option = await this.#model.findById(id);
+    if (!option) throw new createHttpError.NotFound(OptionMessage.NotFound);
+    return option;
+  }
+
   async checkExistById(id) {
     const category = await this.#categoryModel.findById(id);
-    console.log(category);
     if (!category) throw new createHttpError.NotFound(CategoryMessage.NotFound);
     return category;
   }
