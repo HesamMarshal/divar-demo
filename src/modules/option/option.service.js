@@ -7,20 +7,23 @@ const {
   CategoryMessage,
 } = require("../../common/messages/messages");
 const { default: slugify } = require("slugify");
-const CategoryModel = require("../category/category.model");
+const categoryService = require("../category/category.service");
 
 class OptionService {
   #model;
-  #categoryModel;
+  #cateoryService;
+
   constructor() {
     autoBind(this);
     this.#model = OptionModel;
-    this.#categoryModel = CategoryModel;
+    this.#cateoryService = categoryService;
   }
 
   // Create an Option
   async create(optionDto) {
-    const category = await this.checkCategoyExistById(optionDto.category);
+    const category = await this.#cateoryService.checkExistById(
+      optionDto.category
+    );
     optionDto.key = slugify(optionDto.key, {
       trim: true,
       replacement: "_",
@@ -115,12 +118,6 @@ class OptionService {
     const option = await this.#model.findById(id);
     if (!option) throw new createHttpError.NotFound(OptionMessage.NotFound);
     return option;
-  }
-
-  async checkCategoyExistById(id) {
-    const category = await this.#categoryModel.findById(id);
-    if (!category) throw new createHttpError.NotFound(CategoryMessage.NotFound);
-    return category;
   }
 
   // TODO: function name is not clear
