@@ -20,7 +20,7 @@ class OptionService {
 
   // Create an Option
   async create(optionDto) {
-    const category = await this.checkExistById(optionDto.category);
+    const category = await this.checkCategoyExistById(optionDto.category);
     optionDto.key = slugify(optionDto.key, {
       trim: true,
       replacement: "_",
@@ -117,7 +117,7 @@ class OptionService {
     return option;
   }
 
-  async checkExistById(id) {
+  async checkCategoyExistById(id) {
     const category = await this.#categoryModel.findById(id);
     if (!category) throw new createHttpError.NotFound(CategoryMessage.NotFound);
     return category;
