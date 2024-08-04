@@ -112,10 +112,51 @@ class OptionService {
   }
 
   // Remove Options
-
   async removeById(id) {
     await this.checkOptionExistById(id);
     return await this.#model.deleteOne({ _id: id });
+  }
+
+  // Update an option
+
+  async update(id, optionDto) {
+    const oldOption = await this.checkOptionExistById(id);
+
+    if (optionDto.category && isValidObjectId(optionDtoption.category)) {
+      const category = await this.#cateoryService.checkExistById(
+        optionDto.category
+      );
+      optionDto.category = category._id;
+    } else {
+      delete optionDto.category;
+    }
+
+    if (optionDto.slug) {
+      optionDto.key = slugify(optionDto.key, {
+        trim: true,
+        replacement: "_",
+        lower: true,
+      });
+
+      // TODO: refactor this lines of code
+      //  const categoryId = optionDto?.category ? oldOption.category
+      let categoryId = oldOption.category;
+      if (optionDto.category) categoryId = optionDto.category;
+
+      await this.alreadyExistByCategoryKey(optionDto.key, categoryId);
+    }
+
+    // checks if enum is string create a array based on it.
+    if (optionDto?.enum && typeof optionDto.enum === "string") {
+      optionDto.enum = optionDto.enum.split(",");
+      //  if enum is not an array delete enum
+    } else if (!Array.isArray(optionDto.enum)) delete optionDto.enum;
+
+    optionDto.required = isTrue(optionDto?.required);
+
+    await this.#model.updateOne({ _id: id }, { $set: optionDto });
+
+    return option;
   }
 
   // helper functions
