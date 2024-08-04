@@ -1,11 +1,12 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const SwaggerConfig = require("./src/config/swagger.config");
-const mainRouter = require("./src/app.route");
+
 const NotFoundHandler = require("./src/common/exception/not-found.handler");
 const AllExceptionHandler = require("./src/common/exception/all-exception.handler");
 const cookieParser = require("cookie-parser");
 const expressEjsLayouts = require("express-ejs-layouts");
+const mainRouter = require("./src/app.routes");
 
 dotenv.config();
 
