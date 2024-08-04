@@ -18,6 +18,7 @@ const CategoryMessage = Object.freeze({
   CreatedSuccessfully: "Category Created Succesfully",
   NotFound: "Category Not Found",
   AlreadyExist: "Category Already Exists.",
+  Deleted: "Category Deleted Successfully.",
 });
 const OptionMessage = Object.freeze({
   CreatedSuccessfully: "Option Created Succesfully",
