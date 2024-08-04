@@ -14,4 +14,8 @@ mainRouter.get("/", (req, res) => {
   res.render("./pages/index.ejs");
 });
 
+mainRouter.get("/dashboard", (req, res) => {
+  res.render("./pages/panel/dashboard.ejs");
+});
+
 module.exports = mainRouter;
