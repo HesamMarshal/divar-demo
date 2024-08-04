@@ -23,7 +23,8 @@ const OptionMessage = Object.freeze({
   CreatedSuccessfully: "Option Created Succesfully",
   NotFound: "Option Not Found",
   AlreadyExist: "Option Already Exists.",
-  Deleted: "Option Deleted Succefully.",
+  Deleted: "Option Deleted Successfully.",
+  UpdatedSuccessfully: "Option Updated Successfully.",
 });
 
 module.exports = { AuthMessage, UserMessage, CategoryMessage, OptionMessage };

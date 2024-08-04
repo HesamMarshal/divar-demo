@@ -9,6 +9,7 @@ router.get("/:id", optionController.findById);
 router.get("/", optionController.find);
 
 router.delete("/:id", optionController.removeById);
+router.put("/:id", optionController.update);
 
 module.exports = {
   OptionRouter: router,
