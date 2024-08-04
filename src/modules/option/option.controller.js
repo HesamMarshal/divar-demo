@@ -11,7 +11,15 @@ class OptionController {
   }
   async create(req, res, next) {
     try {
-      const { title, key, guide, enum: list, type, category } = req.body;
+      const {
+        title,
+        key,
+        guide,
+        enum: list,
+        type,
+        category,
+        required,
+      } = req.body;
       await this.#service.create({
         title,
         key,
@@ -19,6 +27,7 @@ class OptionController {
         enum: list,
         type,
         category,
+        required,
       });
       return res.status(HttpCodes.CREATED).json({
         message: OptionMessage.CreatedSuccessfully,
@@ -72,6 +81,36 @@ class OptionController {
       await this.#service.removeById(id);
       return res.json({
         message: OptionMessage.Deleted,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async update(req, res, next) {
+    try {
+      const {
+        title,
+        key,
+        guide,
+        enum: list,
+        type,
+        category,
+        required,
+      } = req.body;
+      const { id } = req.params;
+      await this.#service.update(id, {
+        title,
+        key,
+        guide,
+        enum: list,
+        type,
+        category,
+        required,
+      });
+
+      return res.json({
+        message: OptionMessage.UpdatedSuccessfully,
       });
     } catch (error) {
       next(error);

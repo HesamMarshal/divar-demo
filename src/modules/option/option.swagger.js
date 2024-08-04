@@ -25,6 +25,8 @@
  *                      type: string
  *                  guide:
  *                      type: string
+ *                  required:
+ *                      type: boolean
  *                  type:
  *                      type: string
  *                      enum:

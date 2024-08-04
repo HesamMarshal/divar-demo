@@ -8,6 +8,7 @@ const {
 } = require("../../common/messages/messages");
 const { default: slugify } = require("slugify");
 const categoryService = require("../category/category.service");
+const { isTrue, isFalse } = require("../../common/utils/functions");
 
 class OptionService {
   #model;
@@ -24,12 +25,14 @@ class OptionService {
     const category = await this.#cateoryService.checkExistById(
       optionDto.category
     );
+    optionDto.category = category._id;
+
     optionDto.key = slugify(optionDto.key, {
       trim: true,
       replacement: "_",
       lower: true,
     });
-    optionDto.category = category._id;
+
     await this.alreadyExistByCategoryKey(optionDto.key, category._id);
 
     // checks if enum is string create a array based on it.
@@ -39,6 +42,9 @@ class OptionService {
     } else if (typeof optionDto.enum !== "array") {
       optionDto.enum = [];
     }
+
+    optionDto.required = isTrue(optionDto?.required);
+
     const option = await this.#model.create(optionDto);
 
     return option;
