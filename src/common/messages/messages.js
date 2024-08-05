@@ -28,4 +28,18 @@ const OptionMessage = Object.freeze({
   UpdatedSuccessfully: "Option Updated Successfully.",
 });
 
-module.exports = { AuthMessage, UserMessage, CategoryMessage, OptionMessage };
+const PostMessage = Object.freeze({
+  CreatedSuccessfully: "Post Created Succesfully",
+  NotFound: "Post Not Found",
+  AlreadyExist: "Post Already Exists.",
+  Deleted: "Post Deleted Successfully.",
+  UpdatedSuccessfully: "Post Updated Successfully.",
+});
+
+module.exports = {
+  AuthMessage,
+  UserMessage,
+  CategoryMessage,
+  OptionMessage,
+  PostMessage,
+};
