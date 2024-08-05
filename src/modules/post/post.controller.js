@@ -19,11 +19,12 @@ class CategoryController {
   async createPostPage(req, res, next) {
     try {
       let { slug } = req.query;
+      let showBack = false;
 
       let match = { parent: null };
       if (slug) {
         slug = slug.trim();
-
+        showBack = true;
         const category = await CategoryModel.findOne({ slug });
         if (!category)
           throw new createHttpError.NotFound(CategoryMessage.NotFound);
