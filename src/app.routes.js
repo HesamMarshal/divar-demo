@@ -19,5 +19,9 @@ mainRouter.get("/", (req, res) => {
 mainRouter.get("/dashboard", (req, res) => {
   res.render("./pages/panel/dashboard.ejs");
 });
+mainRouter.get("/auth/login", (req, res) => {
+  res.locals.layout = "./layouts/auth/main.ejs";
+  res.render("./pages/auth/login.ejs");
+});
 
 module.exports = mainRouter;
