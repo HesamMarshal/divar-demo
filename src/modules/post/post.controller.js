@@ -20,15 +20,20 @@ class CategoryController {
     try {
       let { slug } = req.query;
       let showBack = false;
+      let options;
 
       let match = { parent: null };
       if (slug) {
         slug = slug.trim();
         showBack = true;
+
         const category = await CategoryModel.findOne({ slug });
+
         if (!category)
           throw new createHttpError.NotFound(CategoryMessage.NotFound);
 
+        options = await this.#service.getCategoryOptions(category._id);
+        if (options.length === 0) options = null;
         match = { parent: category._id };
       }
       const categories = await CategoryModel.aggregate([
@@ -37,9 +42,11 @@ class CategoryController {
         },
       ]);
 
-      // console.log(categories);
-
-      res.render("./pages/panel/create-post.ejs", { categories, showBack });
+      res.render("./pages/panel/create-post.ejs", {
+        categories,
+        showBack,
+        options,
+      });
     } catch (error) {
       next(error);
     }

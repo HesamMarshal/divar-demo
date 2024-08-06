@@ -1,28 +1,70 @@
 <div class="col-lg-12 d-flex align-items-stretch">
     <div class="card w-100">
         <% if(showBack){ %>
-            <div class="p-3">
-                <a href="/post/create" class="btn btn-danger">بازگشت به همه دسته ها</a>
+        <div class="p-3">
+            <a href="/post/create" class="btn btn-danger">بازگشت به همه دسته ها</a>
+        </div>
+        <% } %>
+
+        <div class="p-3">
+            <% if(!options){%>
+            <%if(categories && categories.length>0) {%>
+            <ul>
+                <%categories.forEach(category=>{%>
+                <li>
+                    <a href="/post/create/?slug=<%=category.slug%>" class="w-100 p-3 d-block bg-light text-dark">
+                        <span class="ti ti-<%=category.icon%> nav-small-cap-icon fs-4"></span>
+                        <span>
+                            <%=category.name%>
+                        </span>
+                    </a>
+                </li>
+                <%})%>
+            </ul>
+            <%}%>
+            <%}else{%>
+
+            <div class="p-2">
+                <label>تصاویر آگهی </label>
+                <input type="file" name="images" multiple class="form-control" />
+
             </div>
-            <% } %>
 
-                <div class="p-3">
-                    <%if(categories && categories.length>0) {%>
-                        <ul>
-                            <%categories.forEach(category=>{%>
-                                <li>
-                                    <a href="/post/create/?slug=<%=category.slug%>"
-                                        class="w-100 p-3 d-block bg-light text-dark">
-                                        <span class="ti ti-<%=category.icon%> nav-small-cap-icon fs-4"></span>
-                                        <span>
-                                            <%=category.name%>
-                                        </span>
-                                    </a>
-                                </li>
-                                <%})%>
-                        </ul>
+            <div class="p-2">
+                <label>عنوان آگهی </label>
+                <input type="text" name="title_post" multiple class="form-control" placeholder="عنوان آگهی" />
+            </div>
 
-                        <%}%>
+            <div class="p-2">
+                <label>توضیحات آگهی </label>
+                <textarea class="form-control" placeholder="توضیحات آگهی"> </textarea>
+            </div>
+
+
+
+            <%options.forEach(option=> {%>
+            <label>
+                <%=option.title%>
+                <%=option.required?" * " : ""%>
+            </label>
+            <%if(option.type === "array" ){%>
+            <div class="p-2">
+                <select name="<%options.key%>" class="form-select">
+                    <%option.enum.forEach(item=>{%>
+                    <option value="<%=item%>">
+                        <%=item%>
+                    </option>
+                    <%})%>
+                </select>
+            </div>
+            <%}else{%>
+            <div class="p-3">
+                <input type="text" name="<%=option.key%>" class="form-control" placeholder="<%=option.guide%>">
+            </div>
+
+            <%}%>
+            <%})%>
+            <%}%>
                 </div>
     </div>
 </div>
