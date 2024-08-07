@@ -23,11 +23,15 @@
             </ul>
             <%}%>
             <%}else{%>
-
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden" name="lng" id="lng">
+            <div class="p-2">
+                <label>انتخاب آدرس </label>
+                <div id="map-element" class="w-100" style="height: 300px;"></div>
+            </div>
             <div class="p-2">
                 <label>تصاویر آگهی </label>
                 <input type="file" name="images" multiple class="form-control" />
-
             </div>
 
             <div class="p-2">
@@ -51,6 +55,10 @@
             <div class="p-2">
                 <select name="<%options.key%>" class="form-select">
                     <%option.enum.forEach(item=>{%>
+                    <div class="p-2">
+                        <label>تصاویر آگهی </label>
+                        <input type="file" name="images" multiple class="form-control" />
+                    </div>
                     <option value="<%=item%>">
                         <%=item%>
                     </option>
