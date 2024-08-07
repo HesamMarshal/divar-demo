@@ -23,55 +23,52 @@
             </ul>
             <%}%>
             <%}else{%>
-            <input type="hidden" name="lat" id="lat">
-            <input type="hidden" name="lng" id="lng">
-            <div class="p-2">
-                <label>انتخاب آدرس </label>
-                <div id="map-element" class="w-100" style="height: 300px;"></div>
-            </div>
-            <div class="p-2">
-                <label>تصاویر آگهی </label>
-                <input type="file" name="images" multiple class="form-control" />
-            </div>
+            <form action="/post/create" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="lat" id="lat">
+                <input type="hidden" name="lng" id="lng">
+                <div class="p-2">
+                    <label>انتخاب آدرس </label>
+                    <div id="map-element" class="w-100" style="height: 300px;"></div>
+                </div>
+                <div class="p-2">
+                    <label>تصاویر آگهی </label>
+                    <input type="file" name="images" multiple class="form-control" />
+                </div>
 
-            <div class="p-2">
-                <label>عنوان آگهی </label>
-                <input type="text" name="title_post" multiple class="form-control" placeholder="عنوان آگهی" />
-            </div>
+                <div class="p-2">
+                    <label>عنوان آگهی </label>
+                    <input type="text" name="title_post" multiple class="form-control" placeholder="عنوان آگهی" />
+                </div>
 
-            <div class="p-2">
-                <label>توضیحات آگهی </label>
-                <textarea class="form-control" placeholder="توضیحات آگهی"> </textarea>
-            </div>
-
-
-
-            <%options.forEach(option=> {%>
-            <label>
-                <%=option.title%>
-                <%=option.required?" * " : ""%>
-            </label>
-            <%if(option.type === "array" ){%>
-            <div class="p-2">
-                <select name="<%options.key%>" class="form-select">
-                    <%option.enum.forEach(item=>{%>
-                    <div class="p-2">
-                        <label>تصاویر آگهی </label>
-                        <input type="file" name="images" multiple class="form-control" />
-                    </div>
-                    <option value="<%=item%>">
-                        <%=item%>
-                    </option>
-                    <%})%>
-                </select>
-            </div>
-            <%}else{%>
-            <div class="p-3">
-                <input type="text" name="<%=option.key%>" class="form-control" placeholder="<%=option.guide%>">
-            </div>
-
-            <%}%>
-            <%})%>
+                <div class="p-2">
+                    <label>توضیحات آگهی </label>
+                    <textarea class="form-control" placeholder="توضیحات آگهی"> </textarea>
+                </div>
+                <%options.forEach(option=> {%>
+                <label>
+                    <%=option.title%>
+                    <%=option.required?" * " : ""%>
+                </label>
+                <%if(option.type === "array" ){%>
+                <div class="p-2">
+                    <select name="<%options.key%>" class="form-select">
+                        <%option.enum.forEach(item=>{%>
+                        <div class="p-2">
+                            <label>تصاویر آگهی </label>
+                            <input type="file" name="images" multiple class="form-control" />
+                        </div>
+                        <option value="<%=item%>">
+                            <%=item%>
+                        </option>
+                        <%})%>
+                    </select>
+                </div>
+                <%}else{%>
+                <div class="p-3">
+                    <input type="text" name="<%=option.key%>" class="form-control" placeholder="<%=option.guide%>">
+                </div>
+                <%}%><%})%>
+            </form>
             <%}%>
                 </div>
     </div>
