@@ -26,23 +26,22 @@
             <form action="/post/create" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="lat" id="lat">
                 <input type="hidden" name="lng" id="lng">
+                <input type="hidden" name="category" id="category" value="<%=category%>">
                 <div class="p-2">
                     <label>انتخاب آدرس </label>
                     <div id="map-element" class="w-100" style="height: 300px;"></div>
                 </div>
                 <div class="p-2">
-                    <label>تصاویر آگهی </label>
-                    <input type="file" name="images" multiple class="form-control" />
-                </div>
-
-                <div class="p-2">
                     <label>عنوان آگهی </label>
                     <input type="text" name="title_post" multiple class="form-control" placeholder="عنوان آگهی" />
                 </div>
-
                 <div class="p-2">
                     <label>توضیحات آگهی </label>
-                    <textarea class="form-control" placeholder="توضیحات آگهی"> </textarea>
+                    <textarea class="form-control" name="description" placeholder="توضیحات آگهی"> </textarea>
+                </div>
+                <div class="p-2">
+                    <label>تصاویر آگهی </label>
+                    <input type="file" name="images" multiple class="form-control" />
                 </div>
                 <%options.forEach(option=> {%>
                 <label>
@@ -70,5 +69,3 @@
                 </div>
     </div>
 </div>
-
-<!-- <span class="ti ti-users nav-small-cap-icon fs-4"></span> -->
