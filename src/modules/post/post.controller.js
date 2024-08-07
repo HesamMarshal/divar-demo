@@ -53,8 +53,9 @@ class CategoryController {
   }
   async create(req, res, next) {
     try {
+      console.log(req.body);
       const { name, icon, slug, parent } = req.body;
-      await this.#service.create({ name, icon, slug, parent });
+      // await this.#service.create({ name, icon, slug, parent });
 
       // add to database status 201
       return res.status(HttpCodes.CREATED).json({
