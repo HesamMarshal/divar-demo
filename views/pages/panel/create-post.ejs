@@ -51,7 +51,7 @@
                 </label>
                 <%if(option.type === "array" ){%>
                 <div class="p-2">
-                    <select name="<%options.key%>" class="form-select">
+                    <select name="<%options.title%>" class="form-select">
                         <%option.enum.forEach(item=>{%>
                         <option value="<%=item%>">
                             <%=item%>
@@ -61,7 +61,7 @@
                 </div>
                 <%}else{%>
                 <div class="p-3">
-                    <input type="text" name="<%=option.key%>" class="form-control" placeholder="<%=option.guide%>">
+                    <input type="text" name="<%=option.title%>" class="form-control" placeholder="<%=option.guide%>">
                 </div>
                 <%}%><%})%>
                 <button type="submit" class="btn btn-danger">ثبت آگهی</button>
