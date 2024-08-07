@@ -5,6 +5,7 @@ const {
   CategoryMessage,
 } = require("../../common/messages/messages");
 const HttpCodes = require("http-codes");
+const { Types } = require("mongoose");
 const postService = require("./post.service");
 const CategoryModel = require("../category/category.model");
 const createHttpError = require("http-errors");
@@ -20,14 +21,14 @@ class CategoryController {
     try {
       let { slug } = req.query;
       let showBack = false;
-      let options;
+      let options, category;
 
       let match = { parent: null };
       if (slug) {
         slug = slug.trim();
         showBack = true;
 
-        const category = await CategoryModel.findOne({ slug });
+        category = await CategoryModel.findOne({ slug });
 
         if (!category)
           throw new createHttpError.NotFound(CategoryMessage.NotFound);
@@ -46,6 +47,7 @@ class CategoryController {
         categories,
         showBack,
         options,
+        category: category?._id.toString(),
       });
     } catch (error) {
       next(error);
@@ -54,8 +56,28 @@ class CategoryController {
   async create(req, res, next) {
     try {
       console.log(req.body);
-      const { name, icon, slug, parent } = req.body;
-      // await this.#service.create({ name, icon, slug, parent });
+      const {
+        title_post: title,
+        description: content,
+        lat,
+        lng,
+        category,
+      } = req.body;
+      delete req.body["title_post"];
+      delete req.body["description"];
+      delete req.body["lat"];
+      delete req.body["lng"];
+      delete req.body["category"];
+
+      const options = req.body;
+      await this.#service.create({
+        title,
+        content,
+        coordinate: [lat, lng],
+        category: new Types.ObjectId(category),
+        images: [],
+        options,
+      });
 
       // add to database status 201
       return res.status(HttpCodes.CREATED).json({
