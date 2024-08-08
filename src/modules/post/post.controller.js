@@ -117,11 +117,8 @@ class CategoryController {
 
   async find(req, res, next) {
     try {
-      const categories = await this.#service.find();
-
-      return res.status(HttpCodes.OK).json({
-        categories,
-      });
+      const posts = await this.#service.find();
+      return res.render("./pages/panel/posts", { posts });
     } catch (error) {
       next(error);
     }
