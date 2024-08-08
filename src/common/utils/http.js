@@ -1,5 +1,5 @@
 const { default: axios } = require("axios");
-require("dotenv").require();
+require("dotenv").config();
 const getAddressDetail = async (lat, lng) => {
   const result = await axios
     .get(`${process.env.MAP_IR_URL}?lat=${lat}&lng=${lng}`, {
