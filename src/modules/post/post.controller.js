@@ -10,6 +10,8 @@ const postService = require("./post.service");
 const CategoryModel = require("../category/category.model");
 const createHttpError = require("http-errors");
 const { default: axios } = require("axios");
+const { getAddressDetail } = require("../../common/utils/http");
+const { removePropertyInObject } = require("../../common/utils/functions");
 
 class CategoryController {
   #service;
@@ -69,34 +71,27 @@ class CategoryController {
       const lat = 52.471905;
       const lng = 29.6348;
 
-      const result = await axios
-        .get(`${process.env.MAP_IR_URL}?lat=${lat}&lng=${lng}`, {
-          headers: {
-            "x-api-key": process.env.MAP_IR_API_KEY,
-          },
-        })
-        .then((res) => res.data);
+      const { province, city, district, address, coordinat } =
+        await getAddressDetail(lat, lng);
 
-      console.log(result);
-
-      delete req.body["title_post"];
-      delete req.body["description"];
-      delete req.body["lat"];
-      delete req.body["lng"];
-      delete req.body["category"];
-      delete req.body["images"];
-
-      const options = req.body;
+      const options = removePropertyInObject(req.body, [
+        "title_post",
+        "description",
+        "lat",
+        "lng",
+        "category",
+        "images",
+      ]);
 
       await this.#service.create({
         title,
         content,
-        category: new Types.ObjectId(category),
-        province: "فارس", //result.province,
-        city: "شیراز", //result.city,
-        district: "قدوسی", //result.region,
-        address: "ارس، شیراز، محله قدوسی غربی، بلوار پاسداران، بلوار", // result.address,
-        coordinate: [lat, lng],
+        category,
+        province,
+        city,
+        district,
+        address,
+        coordinate,
         images: [],
         options,
       });
