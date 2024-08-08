@@ -12,6 +12,7 @@ const createHttpError = require("http-errors");
 const { default: axios } = require("axios");
 const { getAddressDetail } = require("../../common/utils/http");
 const { removePropertyInObject } = require("../../common/utils/functions");
+const utf8 = require("utf8");
 
 class CategoryController {
   #service;
@@ -58,7 +59,6 @@ class CategoryController {
   }
   async create(req, res, next) {
     try {
-      console.log(req.body);
       const {
         title_post: title,
         description: content,
@@ -71,7 +71,7 @@ class CategoryController {
       const lat = 52.471905;
       const lng = 29.6348;
 
-      const { province, city, district, address, coordinat } =
+      const { province, city, district, address, coordinate } =
         await getAddressDetail(lat, lng);
 
       const options = removePropertyInObject(req.body, [
