@@ -63,11 +63,13 @@ class CategoryController {
         lng,
         category,
       } = req.body;
+
       delete req.body["title_post"];
       delete req.body["description"];
       delete req.body["lat"];
       delete req.body["lng"];
       delete req.body["category"];
+      delete req.body["images"];
 
       const options = req.body;
       await this.#service.create({
