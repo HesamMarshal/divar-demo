@@ -9,6 +9,7 @@ const { Types } = require("mongoose");
 const postService = require("./post.service");
 const CategoryModel = require("../category/category.model");
 const createHttpError = require("http-errors");
+const { default: axios } = require("axios");
 
 class CategoryController {
   #service;
@@ -59,10 +60,24 @@ class CategoryController {
       const {
         title_post: title,
         description: content,
-        lat,
-        lng,
+        // lat,
+        // lng,
         category,
       } = req.body;
+
+      // map.ir is not working I used it as default
+      const lat = 52.471905;
+      const lng = 29.6348;
+
+      const result = await axios
+        .get(`${process.env.MAP_IR_URL}?lat=${lat}&lng=${lng}`, {
+          headers: {
+            "x-api-key": process.env.MAP_IR_API_KEY,
+          },
+        })
+        .then((res) => res.data);
+
+      console.log(result);
 
       delete req.body["title_post"];
       delete req.body["description"];
@@ -72,11 +87,16 @@ class CategoryController {
       delete req.body["images"];
 
       const options = req.body;
+
       await this.#service.create({
         title,
         content,
-        coordinate: [lat, lng],
         category: new Types.ObjectId(category),
+        province: "فارس", //result.province,
+        city: "شیراز", //result.city,
+        district: "قدوسی", //result.region,
+        address: "ارس، شیراز، محله قدوسی غربی، بلوار پاسداران، بلوار", // result.address,
+        coordinate: [lat, lng],
         images: [],
         options,
       });
