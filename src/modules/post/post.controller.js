@@ -59,6 +59,7 @@ class CategoryController {
   }
   async create(req, res, next) {
     try {
+      const images = req?.files?.map((image) => image?.path?.slice(7));
       const {
         title_post: title,
         description: content,
@@ -101,7 +102,7 @@ class CategoryController {
         district,
         address,
         coordinate,
-        images: [],
+        images,
         options,
       });
 
