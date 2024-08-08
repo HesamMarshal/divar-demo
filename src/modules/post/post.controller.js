@@ -83,6 +83,15 @@ class CategoryController {
         "images",
       ]);
 
+      // encode the option with utf8
+      // TODO: create a helper function
+      for (let key in options) {
+        let value = options[key];
+        delete options[key];
+        key = utf8.decode(key);
+        options[key] = value;
+      }
+
       await this.#service.create({
         title,
         content,
