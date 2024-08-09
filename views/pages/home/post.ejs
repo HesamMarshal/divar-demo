@@ -84,7 +84,9 @@
             confirmButtonText: "تماس",
 
         }).then((result) => {
-
+            if (result.isConfirmed) {
+                window.location.href = "tel://<%=post.userMobile %>"
+            }
         });
     });
 </script>
