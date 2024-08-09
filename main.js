@@ -7,6 +7,7 @@ const AllExceptionHandler = require("./src/common/exception/all-exception.handle
 const cookieParser = require("cookie-parser");
 const expressEjsLayouts = require("express-ejs-layouts");
 const mainRouter = require("./src/app.routes");
+const moment = require("jalali-moment");
 
 dotenv.config();
 
@@ -34,6 +35,9 @@ async function main() {
 
   // Router
   app.use(mainRouter);
+
+  // use Jalali Calendar Moment
+  app.locals.moment = moment;
 
   // Error Handlers
   NotFoundHandler(app);
