@@ -29,12 +29,12 @@ const OptionMessage = Object.freeze({
 });
 
 const PostMessage = Object.freeze({
-  CreatedSuccessfully: "Post Created Succesfully",
-  NotFound: "Post Not Found",
-  AlreadyExist: "Post Already Exists.",
-  Deleted: "Post Deleted Successfully.",
-  UpdatedSuccessfully: "Post Updated Successfully.",
-  RequestNotValid: "Request is not valid.",
+  CreatedSuccessfully: "آگهی با موفقیت ایجاد شد.",
+  NotFound: "آگهی پیدا نشد.",
+  AlreadyExist: "آگهی وجود دارد.",
+  Deleted: "آگهی با موفقیت حذف شد.",
+  UpdatedSuccessfully: "آگهی با موفقیت به روز رسانی شد.",
+  RequestNotValid: "درخواست معتبر نمی باشد.",
 });
 
 module.exports = {
