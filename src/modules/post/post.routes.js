@@ -13,7 +13,7 @@ router.post(
   postController.create
 );
 
-router.get("/my", Authorization, postController.find);
+router.get("/my", Authorization, postController.findMyPosts);
 
 module.exports = {
   PostRouter: router,
