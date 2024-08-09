@@ -115,10 +115,10 @@ class CategoryController {
     }
   }
 
-  async find(req, res, next) {
+  async findMyPosts(req, res, next) {
     try {
       const userId = req.user._id;
-      const posts = await this.#service.find({ userId });
+      const posts = await this.#service.find(userId);
 
       return res.render("./pages/panel/posts", { posts });
     } catch (error) {
