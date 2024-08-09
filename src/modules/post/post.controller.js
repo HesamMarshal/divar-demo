@@ -68,6 +68,7 @@ class CategoryController {
         // lat,
         // lng,
         category,
+        amount,
       } = req.body;
 
       // map.ir is not working I used it as default
@@ -84,6 +85,7 @@ class CategoryController {
         "lng",
         "category",
         "images",
+        "amount",
       ]);
 
       // encode the option with utf8
@@ -107,6 +109,7 @@ class CategoryController {
         coordinate,
         images,
         options,
+        amount,
       });
       this.success_message = PostMessage.CreatedSuccessfully;
       return res.redirect("/post/my");
