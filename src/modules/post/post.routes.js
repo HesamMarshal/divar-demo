@@ -15,6 +15,7 @@ router.post(
 
 router.get("/my", Authorization, postController.findMyPosts);
 router.delete("/delete/:id", Authorization, postController.remove);
+router.get("/:id", postController.showPost);
 
 module.exports = {
   PostRouter: router,
