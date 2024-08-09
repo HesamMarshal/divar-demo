@@ -44,36 +44,30 @@
         </div>
     </div>
     <div class="post-image">
-        <div class="post-thumbnail">
-            <img src="/<%=post.images[0]%>" alt="" class="post-thumbnail" />
-        </div>
-        <div class="post-note">
-            <div class="post-note-input">
-                <textarea name="note" id="note" placeholder="یادداشت شما..."></textarea>
+        <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <%for (let image of post.images) {%>
+                <div class="swiper-slide post-thumbnail">
+                    <img src="/<%=image%>" alt="" style="width: 100%;" />
+                </div>
+                <%}%>
             </div>
-            <p>
-                یادداشت تنها برای شما قابل دیدن است و پس از حذف آگهی، پاک خواهد
-                شد.
-            </p>
-        </div>
-        <div>
-            <a href="#" class="post-privacy-link">
-                <div class="post-privacy post-row">
-                    <img src="./img/message.svg" alt="" />
-                    <p>راهنمایی خرید امن</p>
-                </div>
-            </a>
-        </div>
-        <div>
-            <a href="#" class="post-privacy-link">
-                <div class="post-privacy post-row">
-                    <img src="./img/message.svg" alt="">
-                    <p> ثبت تخلف و مشکل آگهی</p>
-                </div>
-            </a>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
     const callDetailBtn = document.getElementById("call-detail")
 
@@ -88,5 +82,28 @@
                 window.location.href = "tel://<%=post.userMobile %>"
             }
         });
+    });
+
+
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'vertical',
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // And if we need scrollbar
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
     });
 </script>
