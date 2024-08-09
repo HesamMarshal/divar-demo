@@ -19,13 +19,16 @@
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">تاریخ انتشار</h6>
                                 </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">مدیریت</h6>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <%if(posts.length ===0){%>
                             <tr>
                                 <td colspan="5">
-                                    <p class="alert alert-warning">شما هیچ آکهی را ثبت نکرده اید</p>
+                                    <p class="alert alert-warning text-center">شما هیچ آکهی را ثبت نکرده اید</p>
                                 </td>
                             </tr>
                             <%}%>
@@ -43,6 +46,11 @@
                                 <td class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">
                                         <%=moment(post.createdAt).locale("fa").format("jDD jMMMM jYYYY")%>
+                                    </h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">
+                                        <a href="/" class="btn btn-danger">حذف</a>
                                     </h6>
                                 </td>
                             </tr>
