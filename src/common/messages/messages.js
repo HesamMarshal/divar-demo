@@ -34,6 +34,7 @@ const PostMessage = Object.freeze({
   AlreadyExist: "Post Already Exists.",
   Deleted: "Post Deleted Successfully.",
   UpdatedSuccessfully: "Post Updated Successfully.",
+  RequestNotValid: "Request is not valid.",
 });
 
 module.exports = {
