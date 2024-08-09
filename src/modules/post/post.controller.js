@@ -109,8 +109,14 @@ class CategoryController {
       });
 
       // add to database status 201
-      return res.status(HttpCodes.CREATED).json({
-        messages: PostMessage.CreatedSuccessfully,
+      // return res.status(HttpCodes.CREATED).json({
+      //   messages: PostMessage.CreatedSuccessfully,
+      // });
+      const posts = await this.#service.find(userId);
+      return res.render("./pages/panel/posts.ejs", {
+        posts,
+        success_message: PostMessage.CreatedSuccessfully,
+        error_message: null,
       });
     } catch (error) {
       next(error);
@@ -122,7 +128,11 @@ class CategoryController {
       const userId = req.user._id;
       const posts = await this.#service.find(userId);
 
-      return res.render("./pages/panel/posts", { posts });
+      return res.render("./pages/panel/posts", {
+        posts,
+        success_message: null,
+        error_message: null,
+      });
     } catch (error) {
       next(error);
     }
