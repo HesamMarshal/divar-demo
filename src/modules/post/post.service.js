@@ -40,7 +40,36 @@ class PostService {
     if (!postId || !isValidObjectId(postId))
       throw new createHttpError.BadRequest(PostMessage.RequestNotValid);
 
-    const post = this.#model.findById(postId);
+    const [post] = await this.#model.aggregate([
+      { $match: { _id: new Types.ObjectId(postId) } },
+      {
+        $lookup: {
+          from: "users",
+          localField: "userId",
+          foreignField: "_id",
+          as: "user",
+        },
+      },
+      {
+        $unwind: {
+          path: "$user",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $addFields: {
+          userMobile: "$user.mobile",
+        },
+      },
+      {
+        $project: {
+          user: 0,
+        },
+      },
+    ]);
+
+    console.log(post);
+
     if (!post) throw new createHttpError.NotFound(PostMessage.NotFound);
 
     return post;
