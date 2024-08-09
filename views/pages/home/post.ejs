@@ -7,7 +7,7 @@
                 <div class="post-title-location"><%=post.city || post.province%></div>
             </div>
             <div class="post-action">
-                <button class="post-button-action button">اطلاعات تماس</button>
+                <button class="post-button-action button" id="call-detail" type="button">اطلاعات تماس</button>
                 <button class="post-button-chat button">چت</button>
 
                 <img class="post-bookmark" src="./img/bookmark.svg" alt="" />
@@ -74,5 +74,17 @@
         </div>
     </div>
 </div>
-<footer></footer>
-</div>
+<script>
+    const callDetailBtn = document.getElementById("call-detail")
+
+    callDetailBtn.addEventListener("click", () => {
+        console.log("test")
+        Swal.fire({
+            title: "<%=post.userMobile %>",
+            confirmButtonText: "تماس",
+
+        }).then((result) => {
+
+        });
+    });
+</script>
