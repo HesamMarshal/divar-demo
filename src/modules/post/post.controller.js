@@ -152,5 +152,18 @@ class CategoryController {
       next(error);
     }
   }
+
+  async postList(req, res, next) {
+    try {
+      const query = req.query;
+
+      const posts = await this.#service.findAll(query);
+
+      res.locals.layout = "./layouts/website/main.ejs";
+      res.render("./pages/home/index.ejs", { posts });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 module.exports = new CategoryController();
