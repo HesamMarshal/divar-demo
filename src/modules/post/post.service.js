@@ -68,8 +68,6 @@ class PostService {
       },
     ]);
 
-    console.log(post);
-
     if (!post) throw new createHttpError.NotFound(PostMessage.NotFound);
 
     return post;
