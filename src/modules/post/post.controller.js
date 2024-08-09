@@ -108,18 +108,8 @@ class CategoryController {
         images,
         options,
       });
-
-      // add to database status 201
-      // return res.status(HttpCodes.CREATED).json({
-      //   messages: PostMessage.CreatedSuccessfully,
-      // });
-
-      const posts = await this.#service.find(userId);
-      return res.render("./pages/panel/posts.ejs", {
-        posts,
-        success_message: PostMessage.CreatedSuccessfully,
-        error_message: null,
-      });
+      this.success_message = PostMessage.CreatedSuccessfully;
+      return res.redirect("/post/my");
     } catch (error) {
       next(error);
     }
@@ -130,11 +120,12 @@ class CategoryController {
       const userId = req.user._id;
       const posts = await this.#service.find(userId);
 
-      return res.render("./pages/panel/posts", {
+      res.render("./pages/panel/posts", {
         posts,
         success_message: this.success_message,
         error_message: null,
       });
+      this.success_message = null;
     } catch (error) {
       next(error);
     }
@@ -144,15 +135,8 @@ class CategoryController {
       const { id: postId } = req.params;
       await this.#service.remove(postId);
 
-      // const posts = await this.#service.find(userId);
       this.success_message = PostMessage.Deleted;
-      return res.redirect("/post/my");
-      // another way
-      // return res.render("./pages/panel/posts.ejs", {
-      //   posts,
-      //   success_message: PostMessage.Deleted,
-      //   error_message: null,
-      // });
+      res.redirect("/post/my");
     } catch (error) {
       next(error);
     }
