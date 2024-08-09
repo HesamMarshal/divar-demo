@@ -16,6 +16,7 @@ const utf8 = require("utf8");
 
 class CategoryController {
   #service;
+  success_message;
   constructor() {
     autoBind(this);
     this.#service = postService;
@@ -112,6 +113,7 @@ class CategoryController {
       // return res.status(HttpCodes.CREATED).json({
       //   messages: PostMessage.CreatedSuccessfully,
       // });
+
       const posts = await this.#service.find(userId);
       return res.render("./pages/panel/posts.ejs", {
         posts,
@@ -130,7 +132,7 @@ class CategoryController {
 
       return res.render("./pages/panel/posts", {
         posts,
-        success_message: null,
+        success_message: this.success_message,
         error_message: null,
       });
     } catch (error) {
@@ -139,12 +141,18 @@ class CategoryController {
   }
   async remove(req, res, next) {
     try {
-      const { id } = req.params;
-      await this.#service.remove(id);
+      const { id: postId } = req.params;
+      await this.#service.remove(postId);
 
-      return res.status(HttpCodes.OK).json({
-        messages: PostMessage.Deleted,
-      });
+      // const posts = await this.#service.find(userId);
+      this.success_message = PostMessage.Deleted;
+      return res.redirect("/post/my");
+      // another way
+      // return res.render("./pages/panel/posts.ejs", {
+      //   posts,
+      //   success_message: PostMessage.Deleted,
+      //   error_message: null,
+      // });
     } catch (error) {
       next(error);
     }
