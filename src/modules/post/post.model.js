@@ -4,6 +4,7 @@ const PostSchema = new Schema(
   {
     userId: { type: Types.ObjectId, required: true },
     title: { type: String, required: true },
+    amount: { type: Number, required: true, default: 0 },
     content: { type: String, required: true },
     category: { type: Types.ObjectId, ref: "Category", required: true },
     province: { type: String, required: false },
