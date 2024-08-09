@@ -59,6 +59,7 @@ class CategoryController {
   }
   async create(req, res, next) {
     try {
+      const userId = req.user.userId;
       const images = req?.files?.map((image) => image?.path?.slice(7));
       const {
         title_post: title,
@@ -94,6 +95,7 @@ class CategoryController {
       }
 
       await this.#service.create({
+        userId,
         title,
         content,
         category,
