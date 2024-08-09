@@ -34,7 +34,9 @@
                                     <h6 class="fw-semibold mb-0"><%=post.content%></h6>
                                 </td>
                                 <td class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0"><%=post.createdAt%></h6>
+                                    <h6 class="fw-semibold mb-0">
+                                        <%=moment(post.createdAt).locale("fa").format("jDD jMMMM jYYYY")%>
+                                    </h6>
                                 </td>
                             </tr>
                             <%})%>
