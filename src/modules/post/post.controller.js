@@ -59,7 +59,7 @@ class CategoryController {
   }
   async create(req, res, next) {
     try {
-      const userId = req.user.userId;
+      const userId = req.user._id;
       const images = req?.files?.map((image) => image?.path?.slice(7));
       const {
         title_post: title,
