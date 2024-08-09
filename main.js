@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const expressEjsLayouts = require("express-ejs-layouts");
 const mainRouter = require("./src/app.routes");
 const moment = require("jalali-moment");
+const methodOverride = require("method-override");
 
 dotenv.config();
 
@@ -26,6 +27,9 @@ async function main() {
 
   // Use Swagger
   SwaggerConfig(app);
+
+  // Configure method-override
+  app.use(methodOverride("_method"));
 
   // Configure ejs
   app.use(express.static("public"));
