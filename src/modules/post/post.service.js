@@ -6,15 +6,18 @@ const { default: slugify } = require("slugify");
 const OptionModel = require("../option/option.model");
 const PostModel = require("./post.model");
 const { PostMessage } = require("../../common/messages/messages");
+const CategoryModel = require("../category/category.model");
 
 // TODO: Rename Post Service to AdsService
 class PostService {
   #model;
   #optionModel;
+  #categoryModel;
   constructor() {
     autoBind(this);
     this.#model = PostModel;
     this.#optionModel = OptionModel;
+    this.#categoryModel = CategoryModel;
   }
 
   async getCategoryOptions(categoryId) {
@@ -29,6 +32,26 @@ class PostService {
       return await this.#model.find({ userId });
 
     throw new createHttpError.BadRequest(PostMessage.RequestNotValid);
+  }
+  async findAll(options) {
+    let { category, search } = options;
+
+    const query = {};
+    if (category) {
+      const result = await this.#categoryModel.findOne({ slug: category });
+      if (result) {
+        query["category"] = result._id;
+      } else {
+        return [];
+      }
+    }
+
+    if (search) {
+      serach = new RegExp(search, "ig");
+      query["$or"] = [{ title: search }, { description: search }];
+    }
+    const posts = await this.#model.find(query, {}, { sort: { _id: -1 } });
+    return posts;
   }
   async remove(postId) {
     await this.checkExist(postId);
