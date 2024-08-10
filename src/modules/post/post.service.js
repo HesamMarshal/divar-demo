@@ -39,8 +39,13 @@ class PostService {
     const query = {};
     if (category) {
       const result = await this.#categoryModel.findOne({ slug: category });
+      let categories = await this.#categoryModel.find(
+        { parents: result._id },
+        { _id: 1 }
+      );
+      categories = categories.map((item) => item._id);
       if (result) {
-        query["category"] = result._id;
+        query["category"] = { $in: [result._id, ...categories] };
       } else {
         return [];
       }
