@@ -47,7 +47,7 @@ class PostService {
     }
 
     if (search) {
-      serach = new RegExp(search, "ig");
+      search = new RegExp(search, "ig");
       query["$or"] = [{ title: search }, { description: search }];
     }
     const posts = await this.#model.find(query, {}, { sort: { _id: -1 } });
