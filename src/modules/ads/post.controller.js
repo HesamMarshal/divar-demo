@@ -22,6 +22,7 @@ class CategoryController {
     this.#service = postService;
   }
 
+  //
   async createPostPage(req, res, next) {
     try {
       let { slug } = req.query;
@@ -156,6 +157,7 @@ class CategoryController {
     }
   }
 
+  // retrive all post based on query (serach and or category)
   async postList(req, res, next) {
     try {
       const query = req.query;

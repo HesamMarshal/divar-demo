@@ -3,8 +3,8 @@ const { AuthRouter } = require("./modules/auth/auth.routes");
 const { UserRouter } = require("./modules/user/user.routes");
 const { CategoryRouter } = require("./modules/category/category.routes");
 const { OptionRouter } = require("./modules/option/option.routes");
-const { AdsRouter } = require("./modules/post/ads.routes");
-const postController = require("./modules/post/post.controller");
+const { AdsRouter } = require("./modules/ads/ads.routes");
+const postController = require("./modules/ads/post.controller");
 
 const mainRouter = Router();
 
