@@ -1,21 +1,21 @@
 const { Router } = require("express");
-const postController = require("./post.controller");
+const adsController = require("./ads.controller");
 const { upload } = require("../../common/utils/multer");
 const Authorization = require("../../common/guard/authorization.guard");
 
 const router = Router();
 
-router.get("/create", Authorization, postController.createPostPage);
+router.get("/create", Authorization, adsController.createPostPage);
 router.post(
   "/create",
   Authorization,
   upload.array("images", 10),
-  postController.create
+  adsController.create
 );
 
-router.get("/my", Authorization, postController.findMyPosts);
-router.delete("/delete/:id", Authorization, postController.remove);
-router.get("/:id", postController.showPost);
+router.get("/my", Authorization, adsController.findMyPosts);
+router.delete("/delete/:id", Authorization, adsController.remove);
+router.get("/:id", adsController.showPost);
 
 module.exports = {
   AdsRouter: router,
