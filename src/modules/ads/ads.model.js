@@ -1,6 +1,6 @@
 const { Schema, Types, model } = require("mongoose");
 
-const PostSchema = new Schema(
+const AdsSchema = new Schema(
   {
     userId: { type: Types.ObjectId, required: true },
     title: { type: String, required: true },
@@ -18,6 +18,6 @@ const PostSchema = new Schema(
   { timestamps: true }
 );
 
-const PostModel = model("post", PostSchema);
+const AdsModel = model("ads", PostSchema);
 
-module.exports = PostModel;
+module.exports = AdsModel;
