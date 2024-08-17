@@ -18,5 +18,5 @@ router.delete("/delete/:id", Authorization, postController.remove);
 router.get("/:id", postController.showPost);
 
 module.exports = {
-  PostRouter: router,
+  AdsRouter: router,
 };
