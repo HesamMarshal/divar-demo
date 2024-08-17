@@ -18,6 +18,6 @@ const AdsSchema = new Schema(
   { timestamps: true }
 );
 
-const AdsModel = model("ads", PostSchema);
+const AdsModel = model("ads", AdsSchema);
 
 module.exports = AdsModel;
