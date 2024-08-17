@@ -1,21 +1,23 @@
 const { isValidObjectId, Types } = require("mongoose");
 const autoBind = require("auto-bind");
 const createHttpError = require("http-errors");
-const { default: slugify } = require("slugify");
 
 const OptionModel = require("../option/option.model");
-const PostModel = require("./post.model");
+const AdsModel = require("./ads.model");
 const { PostMessage } = require("../../common/messages/messages");
 const CategoryModel = require("../category/category.model");
 
+// Delete
+const { default: slugify } = require("slugify");
+
 // TODO: Rename Post Service to AdsService
-class PostService {
+class AdsService {
   #model;
   #optionModel;
   #categoryModel;
   constructor() {
     autoBind(this);
-    this.#model = PostModel;
+    this.#model = AdsModel;
     this.#optionModel = OptionModel;
     this.#categoryModel = CategoryModel;
   }
@@ -101,4 +103,4 @@ class PostService {
     return post;
   }
 }
-module.exports = new PostService();
+module.exports = new AdsService();
