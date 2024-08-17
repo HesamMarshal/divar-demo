@@ -5,6 +5,7 @@ const { AuthMessage } = require("../messages/messages");
 
 require("dotenv").config();
 
+//  if user not authorized he can not access pages, apis, swagger parts, that use this middleware
 const Authorization = async (req, res, next) => {
   try {
     // retrive token from cookie
