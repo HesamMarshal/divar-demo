@@ -4,7 +4,7 @@ const { UserRouter } = require("./modules/user/user.routes");
 const { CategoryRouter } = require("./modules/category/category.routes");
 const { OptionRouter } = require("./modules/option/option.routes");
 const { AdsRouter } = require("./modules/ads/ads.routes");
-const postController = require("./modules/ads/post.controller");
+const adsController = require("./modules/ads/ads.controller");
 
 const mainRouter = Router();
 
@@ -14,7 +14,7 @@ mainRouter.use("/category", CategoryRouter);
 mainRouter.use("/option", OptionRouter);
 mainRouter.use("/ads", AdsRouter);
 
-mainRouter.get("/", postController.postList);
+mainRouter.get("/", adsController.postList);
 
 // mainRouter.get("/", (req, res) => {
 //   res.locals.layout = "./layouts/website/main.ejs";
