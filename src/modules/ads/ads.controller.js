@@ -4,22 +4,24 @@ const {
   PostMessage,
   CategoryMessage,
 } = require("../../common/messages/messages");
-const HttpCodes = require("http-codes");
-const { Types } = require("mongoose");
-const postService = require("./post.service");
+const adsService = require("./ads.service");
 const CategoryModel = require("../category/category.model");
 const createHttpError = require("http-errors");
-const { default: axios } = require("axios");
 const { getAddressDetail } = require("../../common/utils/http");
 const { removePropertyInObject } = require("../../common/utils/functions");
 const utf8 = require("utf8");
 
-class CategoryController {
+// Delete
+const HttpCodes = require("http-codes");
+const { default: axios } = require("axios");
+const { Types } = require("mongoose");
+
+class AdsController {
   #service;
   success_message;
   constructor() {
     autoBind(this);
-    this.#service = postService;
+    this.#service = adsService;
   }
 
   //
@@ -171,4 +173,4 @@ class CategoryController {
     }
   }
 }
-module.exports = new CategoryController();
+module.exports = new AdsController();
