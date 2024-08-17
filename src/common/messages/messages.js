@@ -1,3 +1,6 @@
+const ErrorMessage = Object.freeze({
+  RouteNotFound: "Route Not Found",
+});
 const AuthMessage = Object.freeze({
   SendOtpSuccessfully: "OTP sent succefully",
   NotFound: "User Not Found",
@@ -43,4 +46,5 @@ module.exports = {
   CategoryMessage,
   OptionMessage,
   PostMessage,
+  ErrorMessage,
 };
