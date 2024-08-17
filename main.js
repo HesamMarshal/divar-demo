@@ -37,7 +37,7 @@ async function main() {
   app.set("view engine", "ejs");
   app.set("layout extractScripts", true);
   app.set("layout extractStyles", true);
-  app.set("layout", "./layouts/panel/main.ejs");
+  app.set("layout", "./layouts/panel/main.ejs"); // set the main layout, you can change when you want
 
   // Router
   app.use(mainRouter);
